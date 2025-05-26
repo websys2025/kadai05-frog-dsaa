@@ -4,18 +4,27 @@
     <title>演習課題5-2：外部APIの呼び出しテスト</title>
 </head>
 <body>
-    <h1 id="msg">何かのAPI</h1>
+    <h1 id="msg">ロボットのAPI</h1>
     <form name="apiform"><p>
-        何かのフォーム：<input type="text" name="form_data">
+        ID入力：<input type="text" id="id" name="form_data">
         <button type="button" id="btn1" onclick="some_api(this.form)">実行</button>
     </p></form>
     
     <div id="result"></div>
     <script>
         async function some_api(myForm) {
+            const endpoint = "https://robohash.org/"
             // ここにコードを書く
-            document.getElementById("result").innerHTML += myForm.form_data.value+"<br />";
-            document.apiform.reset();
+            btn1 = document.getElementById("btn1");
+            btn1.onclick = async() =>{
+                const id = document.getElementById("id").value;
+                console.log(id);
+                const aRes = endpoint + id;
+                const resultDiv =document.getElementById("result");
+                resultDiv.innerHTML = `<img src="${aRes}" alt="Robohash Image" />`;
+            }
+            //document.getElementById("result").innerHTML += myForm.form_data.value+"<br />";
+            //document.apiform.reset();
         }
     </script>
 </body>
